@@ -56,6 +56,7 @@ while True:
 
             face_names.append(name)
 
+    # toggle boolean from true to false or vice versa
     process_this_frame = not process_this_frame
 
     # Display the results
@@ -77,7 +78,7 @@ while True:
                     font, 1.0, (255, 255, 255), 1)
 
         if name in project_managers:
-            print('PROJET MANAGER DETECTED')
+            print('PROJECT MANAGER DETECTED: {}'.format(name))
 
     # Display the resulting image
     cv2.imshow('Video', frame)
