@@ -3,7 +3,7 @@ from PIL import Image
 
 image = face_recognition.load_image_file('group_photo2.jpg')
 face_locations = face_recognition.face_locations(image)
-print(face_locations[0])
+# face_landmarks_list = face_recognition.face_landmarks(image)
 
 for index, face_location in enumerate(face_locations):
     top, right, bottom, left = face_location
@@ -12,5 +12,5 @@ for index, face_location in enumerate(face_locations):
 
     face_image = image[top:bottom, left:right]
     pil_image = Image.fromarray(face_image)
-    pil_image.show()
-    # pil_image.save('cropped{}.png'.format(index))
+    # pil_image.show()
+    pil_image.save('cropped/cropped{}.png'.format(index))
