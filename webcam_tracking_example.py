@@ -2,6 +2,7 @@ import face_recognition
 import os
 import re
 import cv2
+from notify import notify
 
 # Get a reference to webcam #0 (the default one)
 video_capture = cv2.VideoCapture(0)
@@ -10,6 +11,7 @@ known_face_names = []
 known_face_encodings = []
 
 print('Encoding Faces...')
+
 for root, dirs, files in os.walk('./known_faces'):
     for filename in files:
         known_face_names.append(filename.split('.')[0])
@@ -24,6 +26,7 @@ face_encodings = []
 face_names = []
 process_this_frame = True
 project_managers = ['cole', 'clark', 'john', 'sean']
+person_count = 0
 
 while True:
     # Grab a single frame of video
@@ -39,6 +42,9 @@ while True:
     if process_this_frame:
         # Find all the faces and face encodings in the current frame of video
         face_locations = face_recognition.face_locations(rgb_small_frame)
+        if person_count != len(face_locations):
+            print('NEW PERSON DETECTED')
+        person_count = len(face_locations)
         face_encodings = face_recognition.face_encodings(
             rgb_small_frame, face_locations)
 
